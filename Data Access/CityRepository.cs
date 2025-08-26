@@ -1,6 +1,6 @@
 ﻿namespace Housing_Society.Data_Access
 {
-    public class CityRepository
+    public class CityRepository : ICityRepository
     {
     }
 }

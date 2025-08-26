@@ -13,11 +13,11 @@ namespace Housing_Society.Controller_Api
         {
             _service = service;
         }
-        [HttpPost]
+        //[HttpPost]
         //public Task<IActionResult> GetAllHouses()
         //{
-            
+
         //}
-        
+
     }
 }

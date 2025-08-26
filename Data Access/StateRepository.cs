@@ -1,6 +1,6 @@
 ﻿namespace Housing_Society.Data_Access
 {
-    public class StateRepository
+    public class StateRepository: IStateRepository
     {
     }
 }
