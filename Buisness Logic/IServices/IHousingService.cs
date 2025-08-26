@@ -4,6 +4,6 @@ namespace Housing_Society.Buisness_Logic
 {
     public interface IHousingService
     {
-        Task<IEnumerable<House>> GetAll();
+        //Task<IEnumerable<House>> GetAll();
     }
 }
