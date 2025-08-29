@@ -5,7 +5,7 @@ namespace Housing_Society.Models;
 
 public partial class State
 {
-    public int StateId { get; set; }
+    public int? StateId { get; set; }
 
     public string StateName { get; set; } = null!;
 

@@ -17,7 +17,7 @@ public partial class House
 
     public string Laundry { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
 
     public virtual City? City { get; set; }
 

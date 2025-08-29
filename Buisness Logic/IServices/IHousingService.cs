@@ -1,9 +1,11 @@
-﻿using Housing_Society.Models;
+﻿using Housing_Society.DTOs;
 
 namespace Housing_Society.Buisness_Logic
 {
     public interface IHousingService
     {
-        //Task<IEnumerable<House>> GetAll();
+        Task<HouseResponseDto> SaveSociety(HouseRequestDto dto);
+        Task<IEnumerable<HouseDto>> GetAllSocieties();
+        Task<HouseDto> GetHouseById(int id);
     }
 }

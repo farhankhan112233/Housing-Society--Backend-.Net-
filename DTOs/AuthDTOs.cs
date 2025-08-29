@@ -5,6 +5,7 @@
         public int? id { get; set; }
         public string username { get; set; } = null!;
         public string password { get; set; } = null!;
+        public string? email { get; set; }
         public string? role { get; set; }
     }
     public class LoginResponsetDto

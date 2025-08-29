@@ -1,6 +1,5 @@
 ﻿using Housing_Society.Buisness_Logic.IServices;
 using Housing_Society.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Housing_Society.Controller_Api
@@ -15,15 +14,15 @@ namespace Housing_Society.Controller_Api
             _authService = authService;
         }
         [HttpPost("signup")]
-        public async Task<IActionResult> SaveInfo([FromBody] SignupRequestDto signup)
+        public async Task<IActionResult> SaveInfo([FromBody] SignupRequestDto dto)
         {
-            var createdUser = await _authService.Signup(signup);
+            var createdUser = await _authService.Signup(dto);
                 return Ok(createdUser);
         }
         [HttpPost("login")]
-        public async Task<IActionResult> ValidateInfo([FromBody] LoginRequestDto login)
+        public async Task<IActionResult> ValidateInfo([FromBody] LoginRequestDto dto)
         {
-            var verify = await _authService.Login(login);
+            var verify = await _authService.Login(dto);
             if(verify == null)
             {
                 return BadRequest("Username Not Found");

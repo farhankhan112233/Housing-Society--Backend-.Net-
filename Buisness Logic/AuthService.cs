@@ -37,13 +37,23 @@ namespace Housing_Society.Buisness_Logic
             {
                 throw new Exception("Cannot be Null");
             }
-            
-            var response = await _authRepo.VerifyUser(login);
+            var entity = new User
+            {
+                Name = login.username,
+                Email = login.email ?? string.Empty,
+                PasswordHash = login.password,
+                Role = login.role ?? string.Empty
+            };
+            var response = await _authRepo.VerifyUser(entity);
             if(response == null)
             {
                 return null;
             }
-            return new LoginResponsetDto { id = response.id, username = response.username };
+            var res = new LoginResponsetDto {
+                id = response.Id,
+                username = response.Name
+            };
+            return res;
         }
     }
 }

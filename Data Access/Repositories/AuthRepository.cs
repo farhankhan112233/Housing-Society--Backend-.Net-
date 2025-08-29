@@ -16,26 +16,27 @@ namespace Housing_Society.Data_Access
         public async Task<User> AddUser(User signup)
         {
             var exUser =await  dbContext.Users
-                              .FirstOrDefaultAsync(x => x.Email == signup.Email && x.Name == signup.Name);
-            if(exUser != null)
+                              .FirstOrDefaultAsync(x => x.Email == signup.Email
+                              || x.Name == signup.Name);
+            if(exUser is not null )
             {
-                throw new Exception("Already Exists");
+                throw new Exception("Data Already Exists");
             }
             await dbContext.Users.AddAsync(signup);
             await dbContext.SaveChangesAsync();
             return signup;
         }
-        public async Task<LoginResponsetDto> VerifyUser(LoginRequestDto login)
+        public async Task<User> VerifyUser(User login)
         {
             var exUser = await dbContext.Users
                 .FirstOrDefaultAsync
-                (x => x.Name == login.username && 
-                x.PasswordHash == login.password);
-            if(exUser == null)
+                (x => x.Name == login.Name && 
+                x.PasswordHash == login.PasswordHash);
+            if(exUser is null)
             {
                 return null;
             }
-            return new LoginResponsetDto { id = exUser.Id, username = exUser.Name };
+            return exUser;
         }
     }
 }
