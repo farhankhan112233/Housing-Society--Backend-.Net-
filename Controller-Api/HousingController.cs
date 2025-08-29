@@ -1,5 +1,6 @@
 ﻿using Housing_Society.Buisness_Logic;
 using Housing_Society.Data_Access;
+using Housing_Society.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Housing_Society.Controller_Api
@@ -13,11 +14,32 @@ namespace Housing_Society.Controller_Api
         {
             _service = service;
         }
-        //[HttpPost]
-        //public Task<IActionResult> GetAllHouses()
-        //{
-
-        //}
+        [HttpPost]
+        public async Task<IActionResult> SaveSociety([FromForm] HouseRequestDto dto)
+        {
+            var AddSociety = await _service.SaveSociety(dto);
+            if (AddSociety is null)
+            {
+                return BadRequest("Society Already Exists");
+            }
+            return Ok(AddSociety);
+        }
+        [HttpGet("Get-Houses")]
+        public async Task<IActionResult> GetAllSocieties()
+        {
+            var AllSocities = await _service.GetAllSocieties();
+            return Ok(AllSocities);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetHouseById(int id)
+        {
+            var HouseById = await _service.GetHouseById(id);
+            if(HouseById is null)
+            {
+                return BadRequest("Not Found");
+            }
+            return Ok(HouseById);
+        }
 
     }
 }

@@ -6,7 +6,7 @@ namespace Housing_Society.Data_Access.IRespositories
     public interface IAuthRepository
     {
         public Task<User> AddUser(User signup);
-        public Task<LoginResponsetDto> VerifyUser(LoginRequestDto login);
+        public Task<User> VerifyUser(User login);
 
     }
 }
