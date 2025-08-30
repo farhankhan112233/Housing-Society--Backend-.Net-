@@ -15,11 +15,11 @@ namespace Housing_Society.Buisness_Logic
             _authRepo = authRepo;
         }
 
-        public async Task<SignupResponseDto> Signup(SignupRequestDto signup)
+        public async Task<SignupResponseDto?> Signup(SignupRequestDto signup)
         {
             if((signup.email == null || signup.password == null) && signup.name == null  )
             {
-                throw new Exception();
+                return null;
             }
             var entity = new User
             {
@@ -29,6 +29,10 @@ namespace Housing_Society.Buisness_Logic
                 Role = signup.role ?? string.Empty
             };
             var user =  await _authRepo.AddUser(entity);
+            if(user is null)
+            {
+                return null;
+            }
             return new SignupResponseDto {id= user.Id, name = user.Name, email = user.Email };
         }
         public async Task<LoginResponsetDto?> Login(LoginRequestDto login)

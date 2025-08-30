@@ -17,6 +17,10 @@ namespace Housing_Society.Controller_Api
         public async Task<IActionResult> SaveInfo([FromBody] SignupRequestDto dto)
         {
             var createdUser = await _authService.Signup(dto);
+            if(createdUser == null)
+            {
+                return StatusCode(400, "Data Already Exists")
+;            }
                 return Ok(createdUser);
         }
         [HttpPost("login")]

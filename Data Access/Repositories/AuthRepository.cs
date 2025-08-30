@@ -13,14 +13,14 @@ namespace Housing_Society.Data_Access
         {
             this.dbContext = dbContext;
         }
-        public async Task<User> AddUser(User signup)
+        public async Task<User?> AddUser(User signup)
         {
             var exUser =await  dbContext.Users
                               .FirstOrDefaultAsync(x => x.Email == signup.Email
                               || x.Name == signup.Name);
             if(exUser is not null )
             {
-                throw new Exception("Data Already Exists");
+                return null; ;
             }
             await dbContext.Users.AddAsync(signup);
             await dbContext.SaveChangesAsync();
