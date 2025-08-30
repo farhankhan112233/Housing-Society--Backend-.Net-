@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Housing_Society.Models;
-
-public partial class State
+namespace Housing_Society.Models
 {
-    public int? StateId { get; set; }
+    public partial class State
+    {
+        public int? StateId { get; set; }
 
-    public string StateName { get; set; } = null!;
+        public string StateName { get; set; } = null!;
 
-    public virtual ICollection<City> Cities { get; set; } = new List<City>();
+        public virtual ICollection<City> Cities { get; set; } = new List<City>();
+    }
 }

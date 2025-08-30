@@ -34,7 +34,7 @@ namespace Housing_Society.Controller_Api
         public async Task<IActionResult> GetHouseById(int id)
         {
             var HouseById = await _service.GetHouseById(id);
-            if(HouseById is null)
+            if (HouseById is null)
             {
                 return BadRequest("Not Found");
             }

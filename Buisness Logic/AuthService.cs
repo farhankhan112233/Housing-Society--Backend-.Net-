@@ -5,9 +5,7 @@ using Housing_Society.Models;
 
 namespace Housing_Society.Buisness_Logic
 {
-    
-    
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepo;
         public AuthService(IAuthRepository authRepo)
@@ -17,7 +15,7 @@ namespace Housing_Society.Buisness_Logic
 
         public async Task<SignupResponseDto> Signup(SignupRequestDto signup)
         {
-            if((signup.email == null || signup.password == null) && signup.name == null  )
+            if ((signup.email == null || signup.password == null) && signup.name == null)
             {
                 throw new Exception();
             }
@@ -25,11 +23,11 @@ namespace Housing_Society.Buisness_Logic
             {
                 Name = signup.name,
                 Email = signup.email ?? string.Empty,
-                PasswordHash = signup.password?? string.Empty,
+                PasswordHash = signup.password ?? string.Empty,
                 Role = signup.role ?? string.Empty
             };
-            var user =  await _authRepo.AddUser(entity);
-            return new SignupResponseDto {id= user.Id, name = user.Name, email = user.Email };
+            var user = await _authRepo.AddUser(entity);
+            return new SignupResponseDto { id = user.Id, name = user.Name, email = user.Email };
         }
         public async Task<LoginResponsetDto?> Login(LoginRequestDto login)
         {
@@ -45,11 +43,12 @@ namespace Housing_Society.Buisness_Logic
                 Role = login.role ?? string.Empty
             };
             var response = await _authRepo.VerifyUser(entity);
-            if(response == null)
+            if (response == null)
             {
                 return null;
             }
-            var res = new LoginResponsetDto {
+            var res = new LoginResponsetDto
+            {
                 id = response.Id,
                 username = response.Name
             };
