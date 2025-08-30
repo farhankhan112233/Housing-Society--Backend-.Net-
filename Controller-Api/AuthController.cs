@@ -17,13 +17,13 @@ namespace Housing_Society.Controller_Api
         public async Task<IActionResult> SaveInfo([FromBody] SignupRequestDto dto)
         {
             var createdUser = await _authService.Signup(dto);
-            return Ok(createdUser);
+                return Ok(createdUser);
         }
         [HttpPost("login")]
         public async Task<IActionResult> ValidateInfo([FromBody] LoginRequestDto dto)
         {
             var verify = await _authService.Login(dto);
-            if (verify == null)
+            if(verify == null)
             {
                 return BadRequest("Username Not Found");
             }

@@ -12,8 +12,8 @@ namespace Housing_Society.Data_Access
         }
         public async Task<City> AddCity(City city)
         {
-            var existing = await dbContext.Cities
-               .FirstOrDefaultAsync(x => x.CityName.ToLower() == city.CityName.ToLower());
+             var existing =await dbContext.Cities
+                .FirstOrDefaultAsync(x => x.CityName.ToLower() == city.CityName.ToLower());
             if (existing != null)
             {
                 return existing;

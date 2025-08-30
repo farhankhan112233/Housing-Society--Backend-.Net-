@@ -15,10 +15,10 @@ namespace Housing_Society.Data_Access
         }
         public async Task<User> AddUser(User signup)
         {
-            var exUser = await dbContext.Users
+            var exUser =await  dbContext.Users
                               .FirstOrDefaultAsync(x => x.Email == signup.Email
                               || x.Name == signup.Name);
-            if (exUser is not null)
+            if(exUser is not null )
             {
                 throw new Exception("Data Already Exists");
             }
@@ -30,9 +30,9 @@ namespace Housing_Society.Data_Access
         {
             var exUser = await dbContext.Users
                 .FirstOrDefaultAsync
-                (x => x.Name == login.Name &&
+                (x => x.Name == login.Name && 
                 x.PasswordHash == login.PasswordHash);
-            if (exUser is null)
+            if(exUser is null)
             {
                 return null;
             }

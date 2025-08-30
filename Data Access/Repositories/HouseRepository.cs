@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Housing_Society.Data_Access
 {
-    public class HouseRepository : IHouseRepository
+    public class HouseRepository: IHouseRepository
     {
         private readonly HousingSocietyContext dbContext;
         public HouseRepository(HousingSocietyContext dbContext)
@@ -15,7 +15,7 @@ namespace Housing_Society.Data_Access
         {
             var existing = await dbContext.Houses
                 .FirstOrDefaultAsync(x => x.Name == house.Name);
-            if (existing != null)
+            if(existing != null)
             {
                 return null;
             }
@@ -26,7 +26,7 @@ namespace Housing_Society.Data_Access
         {
             var AllSocieties = await dbContext.Houses
                 .Include(x => x.City)
-                .ThenInclude(x => x.State)
+                .ThenInclude(x=>x.State)
                 .Include(x => x.Photos)
                 .AsNoTracking()
                 .ToListAsync();
@@ -44,5 +44,5 @@ namespace Housing_Society.Data_Access
             return existingHouse;
         }
     }
-
+    
 }

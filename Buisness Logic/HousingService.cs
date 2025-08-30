@@ -1,16 +1,16 @@
-﻿using System.Runtime.Versioning;
-using Housing_Society.Data_Access.UnitOfWork;
+﻿using Housing_Society.Data_Access.UnitOfWork;
 using Housing_Society.DTOs;
 using Housing_Society.Models;
+using System.Runtime.Versioning;
 
 namespace Housing_Society.Buisness_Logic
 {
-    public class HousingService : IHousingService
+    public class HousingService: IHousingService
     {
         private readonly IUnitOfWork _unitOfWork;
         public HousingService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+           _unitOfWork = unitOfWork;
         }
 
         public async Task<HouseResponseDto> SaveSociety(HouseRequestDto dto)
@@ -36,7 +36,7 @@ namespace Housing_Society.Buisness_Logic
                 City = cityEntity
             };
             var house = await _unitOfWork.houseRepository.AddHouse(houseEntity);
-            if (house == null)
+            if(house == null)
             {
                 return null;
             }
@@ -188,6 +188,6 @@ namespace Housing_Society.Buisness_Logic
 
 
 
-
+            
 
 
