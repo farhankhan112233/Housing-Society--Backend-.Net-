@@ -20,7 +20,7 @@ namespace Housing_Society.Data_Access
 
             await dbContext.Photos.AddRangeAsync(photos);
 
-
+            
         }
     }
 }

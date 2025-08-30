@@ -5,7 +5,7 @@ namespace Housing_Society.Data_Access.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly HousingSocietyContext _context;
-        public ICityRepository cityRepository { get; }
+        public ICityRepository cityRepository { get;  }
         public IStateRepository stateRepository { get; }
         public IHouseRepository houseRepository { get; }
         public IPhotoRepository photoRepository { get; }
@@ -22,9 +22,9 @@ namespace Housing_Society.Data_Access.UnitOfWork
         {
             return await _context.SaveChangesAsync();
         }
-        public void Dispose()
+        public  void Dispose()
         {
-            _context.Dispose();
+              _context.Dispose();
         }
     }
 }
