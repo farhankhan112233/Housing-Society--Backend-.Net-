@@ -1,6 +1,7 @@
 ﻿using Housing_Society.Data_Access.UnitOfWork;
-using Housing_Society.DTOs;
 using Housing_Society.Models;
+using Housing_Society.DTOs;
+
 using System.Runtime.Versioning;
 
 namespace Housing_Society.Buisness_Logic

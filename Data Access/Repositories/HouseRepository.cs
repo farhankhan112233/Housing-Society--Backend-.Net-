@@ -1,5 +1,5 @@
-﻿using Housing_Society.DTOs;
-using Housing_Society.Models;
+﻿using Housing_Society.Models;
+using Housing_Society.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Housing_Society.Data_Access

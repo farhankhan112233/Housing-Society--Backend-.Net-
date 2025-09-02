@@ -1,7 +1,8 @@
 ﻿using Housing_Society.Buisness_Logic.IServices;
 using Housing_Society.Data_Access.IRespositories;
-using Housing_Society.DTOs;
 using Housing_Society.Models;
+using Housing_Society.DTOs;
+
 
 namespace Housing_Society.Buisness_Logic
 {
@@ -35,7 +36,7 @@ namespace Housing_Society.Buisness_Logic
             }
             return new SignupResponseDto {id= user.Id, name = user.Name, email = user.Email };
         }
-        public async Task<LoginResponsetDto?> Login(LoginRequestDto login)
+        public async Task<LoginRequestDto?> Login(LoginRequestDto login)
         {
             if (login.username == null || login.password == null)
             {
@@ -46,18 +47,22 @@ namespace Housing_Society.Buisness_Logic
                 Name = login.username,
                 Email = login.email ?? string.Empty,
                 PasswordHash = login.password,
-                Role = login.role ?? string.Empty
+                
             };
-            var response = await _authRepo.VerifyUser(entity);
-            if(response == null)
+            var verify = await _authRepo.VerifyUser(entity);
+            if(verify == null)
             {
                 return null;
             }
-            var res = new LoginResponsetDto {
-                id = response.Id,
-                username = response.Name
+            var response = new LoginRequestDto
+            {
+                id = login.id,
+                username = login.username,
+                password = login.password,
+
             };
-            return res;
+            
+            return response;
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Housing_Society.DTOs;
-using Housing_Society.Models;
+﻿using Housing_Society.Models;
+using Housing_Society.DTOs;
 
 namespace Housing_Society.Data_Access.IRespositories
 {
