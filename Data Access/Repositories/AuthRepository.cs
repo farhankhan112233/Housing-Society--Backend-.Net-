@@ -1,6 +1,6 @@
 ﻿using Housing_Society.Data_Access.IRespositories;
-using Housing_Society.DTOs;
 using Housing_Society.Models;
+using Housing_Society.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

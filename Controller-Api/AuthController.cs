@@ -9,10 +9,13 @@ namespace Housing_Society.Controller_Api
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ITokenService _token;
+        public AuthController(IAuthService authService, ITokenService token)
         {
             _authService = authService;
+            _token = token;
         }
+        
         [HttpPost("signup")]
         public async Task<IActionResult> SaveInfo([FromBody] SignupRequestDto dto)
         {
@@ -26,12 +29,15 @@ namespace Housing_Society.Controller_Api
         [HttpPost("login")]
         public async Task<IActionResult> ValidateInfo([FromBody] LoginRequestDto dto)
         {
-            var verify = await _authService.Login(dto);
-            if(verify == null)
+            var verifiedUser = await _authService.Login(dto);
+            
+            if(verifiedUser == null)
             {
                 return BadRequest("Username Not Found");
             }
-            return Ok(verify);
+            var token = await _token.GenerateToken(verifiedUser);
+
+            return Ok(new { Token = token});           
         }
     }
 }
